@@ -5,18 +5,14 @@ from datetime import datetime
 
 # Shared properties for an Ick
 class IckBase(BaseModel):
-    title: str = Field(
-        ..., max_length=150
-    )  # Ensure title is required and has a max length
-    description: Optional[str] = Field(
-        None, max_length=300
-    )  # Optional description with max length
-    category: str = Field(..., max_length=50)  # Required category
+    title: str = Field(..., max_length=150)
+    description: Optional[str] = Field(None, max_length=300)
+    category: str = Field(..., max_length=50)
 
 
 # Schema for creating an Ick (client input)
 class IckCreate(IckBase):
-    pass  # Inherits all fields from IckBase
+    pass
 
 
 # Schema for returning an Ick (response)
@@ -28,7 +24,7 @@ class Ick(IckBase):
     created_at: datetime
 
     class Config:
-        from_attributes = True  # Updated for Pydantic V2 compatibility
+        from_attributes = True
 
 
 # Shared properties for a User
@@ -57,9 +53,7 @@ class User(UserBase):
 
 # Shared properties for a Comment
 class CommentBase(BaseModel):
-    content: str = Field(
-        ..., max_length=500
-    )  # Ensure content is required and has a max length
+    content: str = Field(..., max_length=500)
 
 
 # Schema for creating a Comment (client input)
