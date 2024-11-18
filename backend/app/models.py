@@ -1,6 +1,15 @@
-from sqlalchemy import Column, String, Integer, ForeignKey, Boolean, Text, TIMESTAMP, func
+from sqlalchemy import (
+    Column,
+    String,
+    Integer,
+    ForeignKey,
+    Text,
+    TIMESTAMP,
+    func,
+)
 from sqlalchemy.orm import relationship
 from .database import Base
+
 
 class User(Base):
     __tablename__ = "users"
@@ -14,6 +23,7 @@ class User(Base):
     created_at = Column(TIMESTAMP, default=func.now())
 
     icks = relationship("Ick", back_populates="author")
+
 
 class Ick(Base):
     __tablename__ = "icks"
@@ -29,6 +39,7 @@ class Ick(Base):
 
     author = relationship("User", back_populates="icks")
     comments = relationship("Comment", back_populates="ick")
+
 
 class Comment(Base):
     __tablename__ = "comments"
